@@ -19,6 +19,7 @@ export class ProductsListComponentComponent {
 
 
   clicked(product: Product) {
+    // some comment
     this.currentProduct = product;
     this.productSelected.emit(product);
   }
