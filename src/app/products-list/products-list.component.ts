@@ -7,8 +7,8 @@ import {Product} from '../product.model';
   styleUrls: ['./products-list.component.css']
 })
 export class ProductsListComponent implements OnInit {
-  @Input products: Product[];
-  @Output productSelected: EventEmitter<Product>;
+  @Input() products: Product[];
+  @Output() productSelected: EventEmitter<Product>;
   private currentProduct: Product;
 
   constructor() {
@@ -18,7 +18,17 @@ export class ProductsListComponent implements OnInit {
   ngOnInit() {
   }
 
-  isSelected(myProduct: Product) {
+  isSelected(product: Product): boolean {
+    if (!product || !this.currentProduct) {
+      return false;
+    }
+    return product.sku === this.currentProduct.sku;
+  }
+
+
+  clicked(product: Product) {
+    this.currentProduct = product;
+    this.productSelected.emit(product);
 
   }
 }
