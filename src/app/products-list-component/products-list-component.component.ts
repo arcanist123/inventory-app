@@ -9,10 +9,17 @@ import {Product} from '../product.model';
 export class ProductsListComponentComponent {
   @Input() productList: Product[];
 
-  @Output() ProductSelected: EventEmitter<Product>;
+  @Output() productSelected: EventEmitter<Product>;
+
+  private currentProduct: Product;
 
   constructor() {
+    this.productSelected = new EventEmitter();
   }
 
 
+  clicked(product: Product) {
+    this.currentProduct = product;
+    this.productSelected.emit(product);
+  }
 }
